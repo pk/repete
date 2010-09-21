@@ -1,4 +1,4 @@
-var RepeteInline = new Object(;
+var RepeteInline = new Object();
 
 // Reloads current tab/window
 RepeteInline.reload = function reload() {
@@ -24,7 +24,5 @@ RepeteInline.messageHandler = function messageHandler(event) {
 // Always register the on focus callback
 window.onfocus = RepeteInline.reportFocus;
 
-/**
- * Register event listerners
- */
-safari.self.addEventListener("message",  RepeteInline.messageHandler, false);
+// Register event listerners
+safari.self.addEventListener("message", RepeteInline.messageHandler, false);

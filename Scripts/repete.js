@@ -1,6 +1,7 @@
 ///////////////
 // Utilities //
 ///////////////
+
 Array.prototype.each = function each(func) {
   for(var i = 0; i < this.length; i++) {
     if(func(this[i]) === "__BREAK__") { break; }
@@ -41,24 +42,29 @@ Repete.prototype.setReloader = function setReloader(command, reloader) {
   this.reloaders[command] = reloader;
 }
 
+Repete.prototype.isTabSubscribed = function isTabSubscribed(tab) {
+  for (var cmd in this.commands) {
+    var reloader = this.getReloader(cmd);
+    if (reloader.isReloadingTab(tab)) return true;
+  }
+  return false;
+}
+
 Repete.prototype.contextMenuHandler = function contextMenuHandler(event) {
-  var cmds = new Array(
-    "sr-reload-every-5s",
-    "sr-reload-every-10s",
-    "sr-reload-every-1m",
-    "sr-reload-every-10m",
-    "sr-reload-onfocus"
-  );
-  for (var i = 0; i < cmds.length; i++) {
-    event.contextMenu.appendContextMenuItem(cmds[i], this.commands[cmds[i]].startLabel);
+  for (var cmd in this.commands) {
+    event.contextMenu.appendContextMenuItem(cmd, this.commands[cmd].startLabel);
   }
 }
 
 Repete.prototype.validateHandler = function validateHandler(event) {
   var tab = safari.application.activeBrowserWindow.activeTab;
-  var reloader = this.getReloader(event.command);
-  if (reloader.isReloadingTab(tab)) {
-    event.target.title = this.commands[event.command].stopLabel;
+  if (this.isTabSubscribed(tab)) {
+    var reloader = this.getReloader(event.command);
+    if (reloader.isReloadingTab(tab)) {
+      event.target.title = this.commands[event.command].stopLabel;
+    } else {
+      event.target.disabled = true;
+    }
   }
 }
 
@@ -122,8 +128,6 @@ Reloader.prototype.unSubscribeTab = function unSubscribeTab(tab) {
 
   this.tabs.splice(this.tabs.indexOf(tab), 1);
   console.log("Tab: " + tab.title + " unsubscribed!");
-  console.log(this.isReloading());
-  console.log(this.tabs.length == 0);
   if (this.isReloading() && this.tabs.length == 0) {
     this.stopReloading();
   }

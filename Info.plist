@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Author</key>
+	<string>Pavel Kunc</string>
 	<key>CFBundleDisplayName</key>
-	<string>SmartReload</string>
+	<string>Repete</string>
 	<key>CFBundleIdentifier</key>
-	<string>cz.pavelkunc.safari.smartreload</string>
+	<string>cz.pavelkunc.safari.repete</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
@@ -15,7 +17,7 @@
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
-		<string>smartreload.html</string>
+		<string>repete.html</string>
 	</dict>
 	<key>Content</key>
 	<dict>
@@ -23,19 +25,27 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>Scripts/smartreload-inline.js</string>
+				<string>Scripts/repete-inline.js</string>
 			</array>
 		</dict>
 	</dict>
+	<key>Description</key>
+	<string>Repete adds repeating reloading for your tabs and windows.</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
 	<dict>
 		<key>Website Access</key>
 		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
 			<key>Level</key>
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://pavelkunc.cz/projects/repete/Updates.plist</string>
+	<key>Website</key>
+	<string>http://pavelkunc.cz/projects/repete</string>
 </dict>
 </plist>

@@ -13,7 +13,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -46,6 +46,6 @@
 	<key>Update Manifest URL</key>
 	<string>http://pavelkunc.cz/projects/repete/Updates.plist</string>
 	<key>Website</key>
-	<string>http://pavelkunc.cz/projects/repete</string>
+	<string>http://pavelkunc.cz/projects/repete/</string>
 </dict>
 </plist>

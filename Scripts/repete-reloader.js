@@ -14,7 +14,21 @@ repete.Reloader = function (options) {
   var interval   = options.interval;
   var tabs       = [];
 
-  // Object private methods
+  // Utility collection methods
+  tabs.each = function each(func) {
+    for(var i = 0; i < this.length; i++) {
+      if(func(this[i]) === "__BREAK__") { break; }
+    }
+    return this;
+  }
+
+  tabs.detect = function detect(func) {
+    var match = null;
+    this.each(function(e) {
+      if (func(e)) { match = e; return "__BREAK__"; }
+    });
+    return match;
+  }
 
   // Determine if reloader is reloading or not
   var isReloading = function isReloading() {

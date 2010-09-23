@@ -3,15 +3,17 @@
   <head>
     <title>Lorem Ipsum Global page</title>
     <script src="Scripts/repete.js" type="text/javascript" language="JavaScript"></script>
+    <script src="Scripts/repete-reloader.js" type="text/javascript" language="JavaScript"></script>
+    <script src="Scripts/repete-controller.js" type="text/javascript" language="JavaScript"></script>
     <script language="JavaScript">
       /**
       * Registering event listeners
       */
-      var repete = new Repete();
-      safari.application.addEventListener("contextmenu", function(e) { repete.contextMenuHandler(e); }, false);
-      safari.application.addEventListener("validate",    function(e) { repete.validateHandler(e); }, false);
-      safari.application.addEventListener("command",     function(e) { repete.commandHandler(e); }, false);
-      safari.application.addEventListener("message",     function(e) { repete.messageHandler(e); }, false);
+      var controller = repete.Controller();
+      safari.application.addEventListener("contextmenu", controller.handleContextMenu, false);
+      safari.application.addEventListener("validate",    controller.handleValidate, false);
+      safari.application.addEventListener("command",     controller.handleCommand, false);
+      safari.application.addEventListener("message",     controller.handleMessage, false);
     </script>
   </head>
   <body></body>
